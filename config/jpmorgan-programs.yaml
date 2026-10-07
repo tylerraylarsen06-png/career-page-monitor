@@ -1,0 +1,21 @@
+name: "JPMorganChase Programs"
+url: "https://www.jpmorganchase.com/careers/explore-opportunities/programs"
+type: html
+min_content_length: 500
+notify: discord
+# NOTE: this page renders its program list via JavaScript and is known to
+# sometimes return empty even when RENDERED by a JS-capable fetcher --
+# confirmed from earlier direct testing. This repo's fetch is plain HTTP
+# (no JS execution at all), which is a strictly harder case, so this watch
+# is a strong candidate to end up in FAILURES like Kearney, or to pass its
+# min_content_length check on a near-empty/generic shell and then flip
+# "changed" on every run from pure noise. No selector set (whole-page
+# text). Watch this one closely for the first week; may need a different
+# fetch strategy (headless browser) to actually work, same as Kearney.
+goal: >
+  Alert ONLY when a NEW US-based undergraduate program appears that
+  wasn't there before, or a US early-insight/sophomore program is posted.
+  Ignore UK apprenticeships, school-leaver programs, work-experience
+  programs, and all non-US programs -- this page defaults to sorting UK
+  apprenticeships first, which is not news. If you only see the same UK-
+  first ordering, that is the page's default view, not a real change.

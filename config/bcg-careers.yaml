@@ -1,0 +1,22 @@
+name: "BCG Early Careers"
+url: "https://careers.bcg.com/global/en/early-careers"
+type: html
+min_content_length: 500
+notify: discord
+# NOTE: unlike McKinsey/Bain, this page's rendered HTML has no <main> or
+# similar wrapper I could find -- it runs on the Phenom People career-site
+# platform (same as Oliver Wyman below), which is typically heavy
+# client-side rendering. No selector set, so this watches the whole page
+# text. Two real risks: (1) plain HTTP fetch (no JS execution, unlike how
+# I inspected this page) may see an empty/near-empty shell and fail the
+# min_content_length check every run -- same failure class as Kearney;
+# (2) if it does get real content, whole-page diffing includes more nav/
+# footer chrome than a scoped selector would, so expect noisier changes.
+# First real run will tell us which case this is.
+goal: >
+  Alert when a sophomore/second-year or early-identification undergraduate
+  program opens applications, a new internship for Class of 2029 is
+  posted, or a deadline/open date is announced or changed. BCG's Growing
+  Future Leaders (race-restricted) and Advance (women-only) programs are
+  NOT relevant to Tyler -- do not flag those. Ignore non-US postings,
+  navigation/footer boilerplate, and cosmetic changes.

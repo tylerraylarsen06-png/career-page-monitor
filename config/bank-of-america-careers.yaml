@@ -1,0 +1,15 @@
+name: "Bank of America Careers - Students"
+url: "https://careers.bankofamerica.com/en-us/students"
+type: html
+min_content_length: 500
+notify: discord
+# NOTE: no <main>/similar wrapper found in rendered HTML, but this page
+# is known to carry real readable text (confirmed via an earlier Firecrawl
+# check showing genuine "DISCOVER / APPLY" step content), just not inside
+# a container I could isolate. No selector set (whole-page text) -- watch
+# for whether nav/footer chroma churn makes this noisy.
+goal: >
+  Alert when the Sophomore Summer Analyst program (or similar early-
+  identification program) opens applications, or a deadline/open date is
+  announced or changed. Ignore non-US postings, "opens in new window"
+  style accessibility-label tweaks, and cosmetic/layout changes.

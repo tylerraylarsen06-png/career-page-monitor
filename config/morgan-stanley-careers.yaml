@@ -1,0 +1,14 @@
+name: "Morgan Stanley Careers - Students and Graduates"
+url: "https://www.morganstanley.com/people/students-graduates"
+type: html
+min_content_length: 500
+notify: discord
+# NOTE: no <main>/similar wrapper found in rendered HTML. No selector set
+# (whole-page text) -- expect noisier diffs than the "main"-scoped
+# watches above; revisit if this proves too chatty in practice.
+goal: >
+  Alert when a US-based sophomore/early-insight program (e.g. Morgan
+  Stanley Early Insights or similar) opens applications, or a deadline/
+  open date is announced or changed. This has an October deadline
+  historically -- flag anything touching it. Ignore non-US postings,
+  employee testimonials, and cosmetic/layout changes.

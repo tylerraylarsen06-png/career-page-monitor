@@ -1,0 +1,17 @@
+name: "Oliver Wyman Early Careers"
+url: "https://careers.marsh.com/global/en/oliver-wyman-early-careers-search"
+type: html
+min_content_length: 500
+notify: discord
+# NOTE: Phenom People career-site platform, no <main>/similar wrapper
+# found in rendered HTML -- same situation as BCG above. No selector set
+# (whole-page text). This page is also known (from earlier inspection) to
+# render a loading spinner for its "Create Job Alert" widget, so expect
+# some noisy diffs around that -- Gemini's rules already tell it to ignore
+# loading/widget chrome, but flag it here if it proves unreliable.
+goal: >
+  Alert when a sophomore/second-year undergraduate program, insight day,
+  or externship opens applications, or a deadline/open date is announced
+  or changed. Ignore non-US postings (e.g. Italy, other single-country
+  internship listings that pop in and out of this search) -- only US
+  roles matter. Ignore cookie banners, loading widgets, and layout noise.

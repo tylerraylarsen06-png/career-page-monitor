@@ -1,0 +1,60 @@
+name: monitor
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # 06:00 UTC daily = 11:00 PM Pacific during PDT (summer). GitHub Actions
+    # schedule syntax has no timezone field -- it's always evaluated in UTC
+    # -- so this drifts to 10:00 PM Pacific during PST (winter) across the
+    # DST transitions. Picked to land while Tyler is still at his computer
+    # in the evening; adjust the cron by an hour around early Nov / early
+    # Mar if you want to correct for the DST drift by hand.
+    - cron: "0 6 * * *"
+
+# Serializes runs so two overlapping schedule/manual triggers can never
+# both read+write state/*.json at once and race each other's commits.
+# cancel-in-progress is false (queue, don't cancel) so a run is never
+# killed mid-fetch/mid-commit.
+concurrency:
+  group: career-page-monitor-run
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monitors and send digest
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+        run: python run.py
+
+      - name: Commit and push state
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+          else
+            git commit -m "chore: update watch state [skip ci]"
+            git push
+          fi

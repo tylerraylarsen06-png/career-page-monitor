@@ -1,0 +1,13 @@
+name: "McKinsey Careers - Students"
+url: "https://www.mckinsey.com/careers/students"
+type: html
+selector: "main"
+min_content_length: 500
+notify: discord
+goal: >
+  Alert when a sophomore/second-year or early-identification undergraduate
+  program opens applications, a new internship or insight program for
+  Class of 2029 is posted, an application deadline or open date is
+  announced or changed, or eligibility requirements change. Ignore
+  full-time-analyst or associate roles, non-US postings, cosmetic wording,
+  layout, and blog/insight article changes.

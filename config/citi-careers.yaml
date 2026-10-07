@@ -1,0 +1,22 @@
+name: "Citi Careers - Students and Graduates"
+url: "https://jobs.citi.com/students-and-graduates"
+type: html
+selector: "main"
+min_content_length: 500
+notify: discord
+# NOTE: this job board reorders/paginates its listing on nearly every
+# load, which will trigger "changed" often even when nothing real
+# happened. There's no JSON extraction here (unlike the Firecrawl version
+# of this watch, which pulled structured job data) -- this is a plain
+# text diff, so expect more noise. The goal below leans hard on filtering
+# it out; if it proves too noisy in practice, this is the first watch to
+# revisit.
+goal: >
+  Alert ONLY when a genuinely new US-based posting appears that is
+  sophomore-eligible (an early-identification/insight program for Class
+  of 2029) -- NOT when existing listings simply reorder or shift position
+  on the page, and NOT for Summer Analyst, Full-Time Analyst, or Associate
+  roles tagged for an earlier graduating class (those are for juniors/
+  seniors, not a rising sophomore). Ignore all non-US postings. If the
+  only change is listings moving around with no new eligible role, that
+  is NOT meaningful.

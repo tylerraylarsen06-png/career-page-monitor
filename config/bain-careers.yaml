@@ -1,0 +1,14 @@
+name: "Bain Careers - Students and Graduates"
+url: "https://www.bain.com/careers/students-and-graduates/"
+type: html
+selector: "main"
+min_content_length: 500
+notify: discord
+goal: >
+  Alert when a sophomore/second-year or early-identification undergraduate
+  program opens applications, a new internship or insight program for
+  Class of 2029 is posted, an application deadline or open date is
+  announced or changed, or eligibility requirements change. Bain's ACI
+  (Associate Consultant Intern) program and similar junior-year-only
+  tracks are NOT relevant to a rising sophomore -- do not flag those.
+  Ignore non-US postings, cosmetic wording, and blog/insight changes.

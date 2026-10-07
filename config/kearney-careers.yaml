@@ -1,0 +1,18 @@
+name: "Kearney Careers"
+url: "https://www.kearney.com/careers"
+type: html
+min_content_length: 300
+notify: discord
+goal: >
+  Alert when the consulting internship application opens, a deadline is
+  announced, or eligibility requirements change. This is a time-sensitive
+  target -- flag anything touching it loudly rather than downplaying it.
+# UPDATE 2026-08-16: originally blocked by Cloudflare bot-management
+# (HTTP 403 challenge page). Re-checked via a rendering fetch and the block
+# appears to have lifted -- real content came back, ~266KB, no challenge
+# markers -- but the page's DOM changed and no longer has a <main> element,
+# which is why `selector: "main"` above started failing instead. Selector
+# removed (whole-page text) to match the same approach that worked for 9
+# other watches in this repo. If this still fails after removing the
+# selector, the block is likely back and it needs a rendering fetcher
+# (Playwright/etc) instead, same conclusion as before.

@@ -1,0 +1,12 @@
+name: "Roland Berger Careers"
+url: "https://www.rolandberger.com/en/Careers/"
+type: html
+selector: "main"
+min_content_length: 500
+notify: discord
+goal: >
+  Alert when a sophomore/second-year undergraduate program, insight day,
+  or campus program opens applications, or when a deadline/open date is
+  announced or changed. This is a time-sensitive target -- Roland Berger's
+  campus program is expected to open late August 2026, flag anything
+  touching it loudly. Ignore staff bios, wording, and layout changes.
